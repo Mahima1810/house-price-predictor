@@ -39,6 +39,13 @@ body {
   border-radius: 16px;
   padding: 22px;
   backdrop-filter: blur(10px);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card:hover {
+  border-color: rgba(96, 165, 250, 0.22);
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.06), 0 18px 60px rgba(0, 0, 0, 0.55);
+  transform: translateY(-1px);
 }
 
 .header h1 {
@@ -97,7 +104,13 @@ body {
   cursor: pointer;
   background: linear-gradient(135deg, rgba(96, 165, 250, 0.95), rgba(52, 211, 153, 0.9));
   color: #041014;
-  transition: transform 0.04s ease;
+  transition: transform 0.04s ease, box-shadow 180ms ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.2),
+    0 10px 30px rgba(52, 211, 153, 0.15),
+    0 0 26px rgba(96, 165, 250, 0.14);
 }
 
 .btn:active {
