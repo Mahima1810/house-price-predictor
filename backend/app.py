@@ -1,4 +1,5 @@
 import os
+import tempfile
 from typing import Any, Dict, Tuple
 
 import joblib
@@ -8,7 +9,16 @@ from sklearn.linear_model import LinearRegression
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
+
+
+def _get_model_path() -> str:
+    # Vercel's filesystem is read-only except /tmp.
+    if os.environ.get("VERCEL"):
+        return os.path.join(tempfile.gettempdir(), "house_price_model.pkl")
+    return os.path.join(BASE_DIR, "model.pkl")
+
+
+MODEL_PATH = _get_model_path()
 FRONTEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", "frontend"))
 
 app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path="")
